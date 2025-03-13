@@ -1,0 +1,78 @@
+<div class="container">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h1>Lista de Candidatos</h1>
+    <button class="btn button-general" (click)="nuevoCandidato()">
+      <i class="fa-solid fa-user-plus"></i> Nuevo Candidato
+    </button>
+  </div>
+
+  <mat-form-field appearance="outline">
+    <input matInput (keyup)="applyFilter($event)" placeholder="Buscar..." class="form form-control">
+  </mat-form-field>
+  <div class="table-container ">
+    <div *ngIf="isLoading" class="loading-container">
+      <p>Cargando datos...</p>
+      <div class="loading-bar"></div>
+    </div>
+
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 table table-striped table-hover">
+      <ng-container matColumnDef="nombre">
+        <th mat-header-cell *matHeaderCellDef class="center"> Nombre </th>
+        <td mat-cell *matCellDef="let row"> {{ row.nombre }} </td>
+      </ng-container>
+      <ng-container matColumnDef="apellido">
+        <th mat-header-cell *matHeaderCellDef class="center"> Apellido </th>
+        <td mat-cell *matCellDef="let row"> {{ row.apellido }} </td>
+      </ng-container>
+      <ng-container matColumnDef="documento_identidad">
+        <th mat-header-cell *matHeaderCellDef class="center"> Documento </th>
+        <td mat-cell *matCellDef="let row"> {{ row.documento_identidad }} </td>
+      </ng-container>
+      <ng-container matColumnDef="correo">
+        <th mat-header-cell *matHeaderCellDef class="center"> Correo </th>
+        <td mat-cell *matCellDef="let row"> {{ row.correo }} </td>
+      </ng-container>
+      <ng-container matColumnDef="telefono">
+        <th mat-header-cell *matHeaderCellDef class="center"> Telefono </th>
+        <td mat-cell *matCellDef="let row"> {{ row.telefono }} </td>
+      </ng-container>
+      <ng-container matColumnDef="fecha_creacion">
+        <th mat-header-cell *matHeaderCellDef class="center"> Fecha Registro </th>
+        <td mat-cell *matCellDef="let row"> {{ row.fecha_creacion | date:'dd/MM/yyyy' }} </td>
+      </ng-container>
+      <ng-container matColumnDef="acciones">
+        <th mat-header-cell *matHeaderCellDef class="center"> Acciones </th>
+        <td mat-cell *matCellDef="let row" class="center">
+          <button class="btn btn-outline-primary" (click)="verCandidato(row.id)">
+            <i class="fa-solid fa-eye"></i>
+          </button>
+          <button class="btn btn-outline-warning" (click)="actualizarCandidato(row)">
+            <i class="fa-solid fa-edit"></i>
+          </button>
+          <button class="btn btn-outline-danger" (click)="eliminarCandidato(row)">
+            <i class="fa-solid fa-trash"></i>
+          </button>
+        </td>
+      </ng-container>
+
+      <thead>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      </thead>
+      <tbody>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </tbody>
+    </table>
+  </div>
+  <mat-paginator [pageSize]="5" showFirstLastButtons class="custom-paginator">
+  </mat-paginator>
+  <app-modal-show [data]="dataSeleccionada" [columnConfig]="columnConfig" [columnOrder]="columnOrder"
+    [isVisible]="modalVisible" (closeModal)="modalVisible = false" [title]="modalTitle">
+  </app-modal-show>
+  <app-modal-form
+    [isVisible]="isModalCreateVisible"
+    [candidato]="dataSeleccionada"
+    [title]="dataSeleccionada ? 'Actualizar Candidato' : 'Nuevo Candidato'"
+    (candidatoGuardado)="actualizarTabla($event)"
+    (closeModal)="cerrarModal()">
+    </app-modal-form>
+</div>

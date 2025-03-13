@@ -1,0 +1,39 @@
+<div class="modal-overlay" *ngIf="isModalOpen">
+  <div class="modal-container">
+    <h2>Editar Tipo de Estudio</h2>
+    <form [formGroup]="tipoEstudioForm" (ngSubmit)="submit()">
+      <div class="form-group">
+        <label for="nombre">Nombre</label>
+        <input id="nombre" type="text" class="form-control" formControlName="nombre" required />
+        <div *ngIf="tipoEstudioForm.get('nombre')?.invalid && tipoEstudioForm.get('nombre')?.touched"
+          class="text-danger">
+          El nombre es obligatorio.
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="descripcion">Descripción</label>
+        <textarea id="descripcion" class="form-control" formControlName="descripcion" required></textarea>
+        <div *ngIf="tipoEstudioForm.get('descripcion')?.invalid && tipoEstudioForm.get('descripcion')?.touched"
+          class="text-danger">
+          La descripción es obligatoria.
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="precio">Precio</label>
+        <input id="precio" type="number" class="form-control" formControlName="precio" required
+          (keypress)="validarEntero($event)" pattern="^[0-9]+$" />
+        <div *ngIf="tipoEstudioForm.get('precio')?.invalid && tipoEstudioForm.get('precio')?.touched"
+          class="text-danger">
+          El precio es obligatorio y debe ser un número entero válido.
+        </div>
+      </div>
+
+      <div class="text-right mt-3">
+        <button type="button" class="btn btn-secondary" (click)="close()">Cancelar</button>
+        <button type="submit" class="btn btn-primary" [disabled]="tipoEstudioForm.invalid">Guardar</button>
+      </div>
+    </form>
+  </div>
+</div>

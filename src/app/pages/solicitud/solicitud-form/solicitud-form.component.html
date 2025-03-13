@@ -1,0 +1,70 @@
+<div *ngIf="isVisible" class="modal-overlay">
+  <div class="modal-container">
+    <div class="card">
+      <div class="card-header d-flex justify-content-between align-items-center mb-4">
+        <h2>{{ solicitud?.id ? 'Actualizar Solicitud' : 'Nueva Solicitud' }}</h2>
+        <button class="btn btn-close" (click)="cerrarModal()"></button>
+      </div>
+      <div class="card-body">
+        <form [formGroup]="solicitudForm" (ngSubmit)="submit()">
+
+          <div class="mb-3">
+            <label for="candidato">Candidato</label>
+            <select id="candidato" class="form-control" formControlName="candidato_id">
+              <option value="" disabled selected>Seleccione un candidato</option>
+              <option *ngFor="let candidato of candidatos" [value]="candidato.id">
+                {{ candidato.nombre }} {{ candidato.apellido }} - {{ candidato.documento_identidad }}
+              </option>
+            </select>
+            <small class="text-danger" *ngIf="validationErrors.candidato_id">
+              {{ validationErrors.candidato_id[0] }}
+            </small>
+            <div *ngIf="solicitudForm.get('candidato_id')?.invalid && solicitudForm.get('candidato_id')?.touched"
+              class="text-danger">
+              Seleccione un candidato válido.
+            </div>
+          </div>
+
+
+          <div class="mb-3">
+            <label for="tipoEstudio">Tipo de Estudio:</label>
+            <select id="tipoEstudio" formControlName="tipo_estudio_id" class="form-control">
+              <option value="" disabled selected>Seleccione un tipo de estudio</option>
+              <option *ngFor="let tipo of tiposEstudio" [value]="tipo.id">
+                {{ tipo.nombre }}
+              </option>
+            </select>
+            <small class="text-danger" *ngIf="validationErrors.tipo_estudio_id">
+              {{ validationErrors.tipo_estudio_id[0] }}
+            </small>
+            <div *ngIf="solicitudForm.get('tipo_estudio_id')?.invalid && solicitudForm.get('tipo_estudio_id')?.touched"
+              class="text-danger">
+              Seleccione un tipo de estudio válido.
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="estado">Estado:</label>
+            <select id="estado" formControlName="estado" class="form-control">
+              <option value="pendiente">Pendiente</option>
+              <option value="en_proceso">En Proceso</option>
+              <option value="completado">Completado</option>
+            </select>
+            <small class="text-danger" *ngIf="validationErrors.estado">
+              {{ validationErrors.estado[0] }}
+            </small>
+          </div>
+
+
+          <button type="submit" class="btn btn-primary">
+            {{ solicitud?.id ? 'Actualizar' : 'Guardar' }}
+          </button>
+          <button type="button" class="btn btn-secondary" (click)="cerrarModal()">Cancelar</button>
+        </form>
+
+        <p *ngIf="errorMessage" class="text-danger mt-2">{{ errorMessage }}</p>
+      </div>
+    </div>
+  </div>
+</div>
+

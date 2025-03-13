@@ -1,0 +1,197 @@
+/* Estructura principal */
+.layout {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* Barra superior */
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #12122e;
+  padding: 10px 20px;
+  color: white;
+  height: 50px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+/* Botón de menú */
+.menu-toggle {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.menu-toggle:hover {
+  color: var(--primary-color);
+}
+
+/* Información del usuario */
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.user-info span {
+  font-weight: bold;
+}
+
+.logout-btn {
+  background-color: var(--primary-color);
+  border: none;
+  color: white;
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.logout-btn:hover {
+  background-color: #5fd700;
+}
+
+/* Barra lateral */
+.sidebar {
+  background: #0c0b21;
+  width: 250px;
+  height: 100vh;
+  padding: 20px;
+  transition: width 0.3s ease;
+  position: fixed;
+  top: 50px;
+  left: 0;
+  bottom: 0;
+}
+
+.sidebar.collapsed {
+  width: 80px;
+}
+
+.sidebar h2 {
+  color: var(--primary-color);
+  margin-bottom: 20px;
+  color: rgb(94, 94, 94);
+}
+
+/* Menú lateral */
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar li {
+  margin: 15px 0;
+}
+
+.sidebar a {
+  display: flex;
+  align-items: center;
+  color: white;
+  text-decoration: none;
+  padding: 10px;
+  border-radius: 5px;
+  transition: background 0.3s;
+}
+
+.sidebar a:hover {
+  background: #5fd700;
+}
+
+.sidebar i {
+  font-size: 20px;
+  margin-right: 10px;
+}
+
+/* Oculta los nombres si la barra está colapsada */
+.sidebar.collapsed span {
+  display: none;
+}
+
+/* Contenido principal */
+.content {
+  flex-grow: 1;
+  margin-left: 250px;
+  padding: 20px;
+  transition: margin-left 0.3s;
+  width: calc(100% - 250px);
+  margin-top: 50px;
+}
+
+.sidebar.collapsed + .content {
+  margin-left: 80px;
+  width: calc(100% - 80px);
+}
+
+/* Secciones del menú */
+.menu-section h3 {
+  color: #b3b3b3;
+  cursor: pointer;
+  padding: 8px 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 11px;  /* Reducido */
+  transition: color 0.3s;
+}
+
+.menu-section h3:hover {
+  color: #5fd700;
+}
+
+.menu-section h3.active {
+  color: white;
+}
+
+/* Íconos de flecha */
+.menu-section i {
+  font-size: 12px;  /* Reducido */
+}
+
+/* Ajusta los títulos de las secciones */
+.sidebar h3 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  padding: 8px 12px;
+  color: #ddd;
+  font-size: 12px;  /* Reducido */
+  border-radius: 4px;
+  transition: background 0.3s;
+}
+
+.sidebar h3:hover {
+  background: #5fd700;
+}
+
+/* Iconos de flecha para expandir/colapsar */
+.sidebar .arrow {
+  margin-left: auto;
+  font-size: 12px; /* Reducido */
+}
+
+/* Estilos para los submenús */
+.sidebar ul ul {
+  list-style: none;
+  padding-left: 15px;
+}
+
+.sidebar ul ul li a {
+  padding: 6px 10px;
+  display: flex;
+  align-items: center;
+  font-size: 11px; /* Reducido */
+  color: white;
+  transition: background 0.3s;
+}
+
+.sidebar ul ul li a:hover {
+  background: rgba(255, 255, 255, 0.2);
+}

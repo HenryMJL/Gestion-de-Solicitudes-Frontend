@@ -1,0 +1,66 @@
+/* Variables de colores */
+:root {
+  --primary-color: #72ff00;
+  --background-color: #0c0b21;
+}
+
+/* Contenedor principal del login */
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: var(--background-color);
+}
+
+/* Tarjeta de login */
+.login-card {
+  background: #12122e;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  width: 350px;
+  text-align: center;
+  color: white;
+}
+
+.login-card h2 {
+  margin-bottom: 1.5rem;
+  color: var(--primary-color);
+}
+
+/* Campos de entrada */
+.form-control {
+  background: transparent;
+  border: 1px solid var(--primary-color);
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.form-control::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.form-control:focus {
+  border-color: #9fff33;
+  box-shadow: 0 0 8px rgba(114, 255, 0, 0.8);
+  outline: none;
+}
+
+/* Botón de ingreso */
+.btn-primary {
+  background-color: var(--primary-color);
+  border: none;
+  color: rgb(255, 255, 255);
+  font-weight: bold;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.btn-primary:hover {
+  background-color: #5fd700;
+}

@@ -1,0 +1,27 @@
+<div *ngIf="conteoSolicitudes">
+  <h2>Resumen de Solicitudes</h2>
+  <div class="row">
+    <div *ngFor="let item of conteoSolicitudes" class="col-md-4 mb-5">
+      <div [ngClass]="getCardClass(item.estado)" class="card card-dashboard text-white">
+        <div class="card-body">
+          <h5 class="card-title">{{ item.estado_legible }}</h5>
+          <p class="card-text display-4">{{ item.total }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container mt-4">
+  <div class="row d-flex justify-content-between">
+    <div class="chart-container">
+      <canvas baseChart [data]="pieChartData" chartType="pie" [options]="pieChartOptions"
+        [type]="pieChartType"></canvas>
+    </div>
+
+    <div class="chart-container">
+      <canvas baseChart [data]="lineChartData" chartType="line" [options]="lineChartOptions"
+        [type]="lineChartType"></canvas>
+    </div>
+  </div>
+</div>
