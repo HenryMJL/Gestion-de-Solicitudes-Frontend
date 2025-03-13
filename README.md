@@ -30,8 +30,8 @@ Sigue estos pasos para instalar y configurar el proyecto:
 1. **📥 Clonar el repositorio:**
 
 ```bash
-git clone https://github.com/HenryMJL/Gestion-de-Solicitudes-Fronted.git
-cd Gestion-de-Solicitudes-Fronted
+git clone https://github.com/HenryMJL/Gestion-de-Solicitudes-Frontend.git
+cd Gestion-de-Solicitudes-Frontend
 ```
 
 2. **📦 Instalar dependencias:**
